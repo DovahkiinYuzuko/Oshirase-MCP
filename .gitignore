@@ -1,0 +1,22 @@
+# すべてを無視
+/*
+
+# 必要なディレクトリを許可
+!/src/
+!/docs/
+
+# 必要なファイルを許可
+!.gitignore
+!README.md
+!LICENSE
+!NOTICE.md
+!Cargo.toml
+!Cargo.lock
+!gemini-extension.json
+!Oshirase-MCP仕様書.md
+!TODO.md
+!変数関数仕様書.md
+!config.toml.example
+
+# target は無視
+/target
