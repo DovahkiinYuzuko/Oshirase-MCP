@@ -1,0 +1,67 @@
+﻿name: Rename Release Assets for Gemini CLI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download release assets
+        run: gh release download ${{ github.event.release.tag_name }} --dir assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Repackage and Rename Assets
+        run: |
+          cd assets
+          
+          # Windows x64
+          if [ -f "oshirase-mcp-x86_64-pc-windows-msvc.zip" ]; then
+            unzip -q "oshirase-mcp-x86_64-pc-windows-msvc.zip"
+            cd oshirase-mcp-x86_64-pc-windows-msvc
+            zip -q -r "../win32.x64.oshirase-mcp.zip" *
+            cd ..
+            gh release upload ${{ github.event.release.tag_name }} "win32.x64.oshirase-mcp.zip" --clobber
+          fi
+          
+          # macOS ARM64
+          if [ -f "oshirase-mcp-aarch64-apple-darwin.tar.xz" ]; then
+            tar -xf "oshirase-mcp-aarch64-apple-darwin.tar.xz"
+            cd oshirase-mcp-aarch64-apple-darwin
+            tar -czf "../darwin.arm64.oshirase-mcp.tar.gz" *
+            cd ..
+            gh release upload ${{ github.event.release.tag_name }} "darwin.arm64.oshirase-mcp.tar.gz" --clobber
+          fi
+
+          # macOS x64
+          if [ -f "oshirase-mcp-x86_64-apple-darwin.tar.xz" ]; then
+            tar -xf "oshirase-mcp-x86_64-apple-darwin.tar.xz"
+            cd oshirase-mcp-x86_64-apple-darwin
+            tar -czf "../darwin.x64.oshirase-mcp.tar.gz" *
+            cd ..
+            gh release upload ${{ github.event.release.tag_name }} "darwin.x64.oshirase-mcp.tar.gz" --clobber
+          fi
+
+          # Linux x64
+          if [ -f "oshirase-mcp-x86_64-unknown-linux-gnu.tar.xz" ]; then
+            tar -xf "oshirase-mcp-x86_64-unknown-linux-gnu.tar.xz"
+            cd oshirase-mcp-x86_64-unknown-linux-gnu
+            tar -czf "../linux.x64.oshirase-mcp.tar.gz" *
+            cd ..
+            gh release upload ${{ github.event.release.tag_name }} "linux.x64.oshirase-mcp.tar.gz" --clobber
+          fi
+          
+          # Linux ARM64
+          if [ -f "oshirase-mcp-aarch64-unknown-linux-gnu.tar.xz" ]; then
+            tar -xf "oshirase-mcp-aarch64-unknown-linux-gnu.tar.xz"
+            cd oshirase-mcp-aarch64-unknown-linux-gnu
+            tar -czf "../linux.arm64.oshirase-mcp.tar.gz" *
+            cd ..
+            gh release upload ${{ github.event.release.tag_name }} "linux.arm64.oshirase-mcp.tar.gz" --clobber
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
