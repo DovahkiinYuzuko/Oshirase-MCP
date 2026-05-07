@@ -2,6 +2,13 @@
 name = "oshirase-mcp"
 version = "0.1.0"
 edition = "2021"
+description = "A MCP server for OS desktop and Discord notifications"
+repository = "https://github.com/DovahkiinYuzuko/Oshirase-MCP"
+license = "MIT"
+
+[[bin]]
+name = "oshirase-mcp"
+path = "src/main.rs"
 
 [dependencies]
 # MCP

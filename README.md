@@ -1,37 +1,59 @@
 # Oshirase-MCP
 
-Unified notification manager for OS desktop alerts and Discord Webhooks via Model Context Protocol (MCP).
+[日本語](#日本語)|[English](#english)
 
-## Overview
+## 日本語
 
-Oshirase-MCP allows AI agents and CLI tools to send notifications to your local desktop or a Discord channel. It's designed to be a lightweight, single-responsibility server that improves your feedback loop during long-running tasks.
+### 概要
+Oshirase-MCPは、Model Context Protocol (MCP) を通じて、OSデスクトップ通知とDiscord Webhook通知を統合して管理・送信できるサーバーです。AIエージェントやCLIツールから、ビルド完了やエラーなどの情報を視覚的に受け取ることができます。
 
-## Features
+### インストール方法
 
-- **OS Desktop Notifications**: Native alerts on Windows, macOS, and Linux.
-- **Discord Webhook Support**: Rich embeds with timestamp and context fields.
+#### Gemini CLI (推奨)
+GitHubリポジトリのURLを指定するだけで、バイナリのダウンロードから設定まで自動で行えます。
+```bash
+gemini extensions install https://github.com/DovahkiinYuzuko/Oshirase-MCP
+```
+*インストール中に Discord Webhook URL などの設定を聞かれるので、画面の指示に従ってください。*
 
-## Quick Start
-
-1. **Build**:
-   ```bash
-   cargo build --release
-   ```
-2. **Setup AI Agents**:
-   Follow the [Integration Guide](docs/setup/INTEGRATION.md) to add this server to your favorite AI tools.
-
-## Configuration
-
-Settings are managed in `config.toml` located in your system's config directory (e.g., `%APPDATA%\mcp-notifier\config.toml`).
-
-```toml
-[discord]
-webhook_url = "https://discord.com/api/webhooks/..."
-
-[general]
-default_title = "Oshirase"
+#### Claude Code
+```bash
+claude mcp add oshirase --command "npx" --args "-y,oshirase-mcp"
 ```
 
-## License
+#### Codex CLI
+`~/.codex/config.toml` に以下の設定を追加してください。
+```toml
+[mcp_servers.oshirase]
+command = "npx"
+args = ["-y", "oshirase-mcp", "--mcp"]
+```
 
-MIT
+### 使い方
+1. **ビルド**: `oshirase-mcp-server` フォルダへ移動し、`cargo build --release` を実行します。
+2. **MCP登録**: お使いのAIエージェント（Gemini CLI, Claude, Cursor等）に、ビルドしたバイナリをMCPサーバーとして登録します。
+3. **設定**: 初回起動時に生成される `config.toml` に Discord Webhook などを設定してください。
+
+### リポジトリ構成
+- `oshirase-mcp-server/`: MCPサーバーのソースコードとビルド用ファイル。
+- `LICENSE`: MITライセンス。
+- `NOTICE.md`: サードパーティ製ライブラリのライセンス告知。
+
+詳細なセットアップ手順については、[oshirase-mcp-server/README.md](./oshirase-mcp-server/README.md) を参照してください。
+
+## English
+
+### Overview
+Oshirase-MCP is a unified server for managing and sending notifications via OS desktop alerts and Discord Webhooks through the Model Context Protocol (MCP). It allows AI agents and CLI tools to provide visual feedback for events like build completions or critical errors.
+
+### Usage
+1. **Build**: Navigate to the `oshirase-mcp-server` directory and run `cargo build --release`.
+2. **MCP Registration**: Register the compiled binary as an MCP server in your AI agent (e.g., Gemini CLI, Claude, Cursor).
+3. **Configuration**: Set up your Discord Webhook or other settings in the `config.toml` file generated upon the first run.
+
+### Repository Structure
+- `oshirase-mcp-server/`: Source code and build files for the MCP server.
+- `LICENSE`: MIT License.
+- `NOTICE.md`: License notices for third-party libraries.
+
+For detailed setup instructions, please refer to [oshirase-mcp-server/README.md](./oshirase-mcp-server/README.md).

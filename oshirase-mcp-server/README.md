@@ -6,17 +6,17 @@
 
 ### 詳細セットアップ手順
 
-#### 1. ビルド（ソースから構築する場合）
-Rustがインストールされている環境で、以下のコマンドを実行してバイナリを作成します。
+#### 1. ビルドと配布
+このプロジェクトは **cargo-dist** を使用して、Windows, macOS, Linux 向けのバイナリを自動配布しています。ソースからビルドする場合は、以下のコマンドを実行してください。
 ```bash
 cargo build --release
 ```
-※配布版を利用する場合は、ルートディレクトリの `bin/` フォルダに各OS向けのコンパイル済みバイナリが格納されています。拡張機能は `bin/run.js` を経由して、実行環境に合わせたバイナリを自動的に選択・起動します。
 
-#### 2. 設定 (config.toml)
-初回起動後、以下のパスに設定ファイルが自動生成されます：
-- **Windows**: `%APPDATA%\mcp-notifier\config.toml`
-- **macOS/Linux**: `~/.config/mcp-notifier/config.toml`（または各OSの標準パス）
+#### 2. 設定
+- **Gemini CLI**: インストール時に設定（Webhook URLなど）を直接入力できます。手動で設定ファイルを編集する必要はありません。
+- **その他のツール**: 初回起動後、以下のパスに設定ファイルが自動生成されます：
+  - **Windows**: `%APPDATA%\mcp-notifier\config.toml`
+  - **macOS/Linux**: `~/.config/mcp-notifier/config.toml`
 
 Discord通知を使用する場合は、`webhook_url` を記入してください。
 ```toml
