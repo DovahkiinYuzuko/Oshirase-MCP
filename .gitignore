@@ -1,31 +1,14 @@
-# すべてを無視
+# 全てを無視
 *
 
-# ディレクトリ構造のみ許可
-!/src/
-!/bin/
-!/docs/
+# ディレクトリを許可
+!/oshirase-mcp-server/
 
-# 必須のプロジェクトファイルを許可
+# ルートファイルを許可
 !.gitignore
-!Cargo.toml
 !README.md
-!gemini-extension.json
-!GEMINI.md
+!LICENSE
+!NOTICE.md
 
-# Rustソースコードを許可
-!src/**/*.rs
-
-# ドキュメントを許可
-!docs/**/*.md
-
-# その他すべて（AI用ドキュメント、バイナリ、一時ファイル、個人設定）を確実に除外
-/target/
-/.history/
-/.qodo/
-/.vscode/
-/*.md
-!README.md
-!GEMINI.md
-.env*
-*.log
+# サーバーディレクトリ配下をすべて許可
+!/oshirase-mcp-server/**
