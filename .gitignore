@@ -2,7 +2,7 @@
 *
 
 # ディレクトリを許可
-!/oshirase-mcp-server/
+!/src/
 !/bin/
 
 # ルートファイルを許可
@@ -12,13 +12,16 @@
 !NOTICE.md
 !gemini-extension.json
 !AGENTS.md
+!Cargo.toml
+!Cargo.lock
+!dist-workspace.toml
 
 # GitHub Actionsを許可
 !/.github/
 !/.github/**
 
-# サーバーディレクトリ配下をすべて許可
-!/oshirase-mcp-server/**
+# ソースコードを許可
+!/src/**
 
 # バイナリ配布用ディレクトリのスクリプトを許可
 !/bin/run.js
