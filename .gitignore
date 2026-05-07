@@ -10,17 +10,7 @@
 !Cargo.toml
 !README.md
 !gemini-extension.json
+!GEMINI.md
 
 # Rustソースコードを許可
 !src/**/*.rs
-
-# その他すべて（AI用ドキュメント、バイナリ、一時ファイル、個人設定）を確実に除外
-/target/
-/.history/
-/.qodo/
-/.vscode/
-/docs/
-/*.md
-!README.md
-.env*
-*.log
