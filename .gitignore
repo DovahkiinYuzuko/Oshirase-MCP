@@ -12,6 +12,7 @@
 !NOTICE.md
 !gemini-extension.json
 !AGENTS.md
+!GEMINI.md
 !Cargo.toml
 !Cargo.lock
 !dist-workspace.toml
