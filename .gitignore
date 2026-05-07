@@ -3,12 +3,19 @@
 
 # ディレクトリを許可
 !/oshirase-mcp-server/
+!/bin/
 
 # ルートファイルを許可
 !.gitignore
 !README.md
 !LICENSE
 !NOTICE.md
+!gemini-extension.json
+!GEMINI.md
 
 # サーバーディレクトリ配下をすべて許可
 !/oshirase-mcp-server/**
+
+# バイナリ配布用ディレクトリのスクリプトとバイナリを許可
+!/bin/run.js
+!/bin/oshirase-mcp-*

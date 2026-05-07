@@ -1,0 +1,10 @@
+{
+  "name": "oshirase-mcp",
+  "version": "0.1.0",
+  "mcpServers": {
+    "oshirase": {
+      "command": "node",
+      "args": ["${extensionPath}${/}bin${/}run.js", "--mcp"]
+    }
+  }
+}
