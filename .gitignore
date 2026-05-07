@@ -13,6 +13,10 @@
 !gemini-extension.json
 !AGENTS.md
 
+# GitHub Actionsを許可
+!/.github/
+!/.github/**
+
 # サーバーディレクトリ配下をすべて許可
 !/oshirase-mcp-server/**
 
