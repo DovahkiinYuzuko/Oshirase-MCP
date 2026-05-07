@@ -1,25 +1,26 @@
 # すべてを無視
 *
 
-# ディレクトリ構造を許可
+# ディレクトリ構造のみ許可
 !/src/
 !/bin/
-!/docs/
 
-# 必要なファイルを許可
+# ビルドとMCPに必要な最小限のファイルのみ許可
 !.gitignore
-!README.md
-!LICENSE
-!NOTICE.md
 !Cargo.toml
+!README.md
 !gemini-extension.json
-!変数関数仕様書.md
 
-# ソースコードを許可
+# Rustソースコードを許可
 !src/**/*.rs
 
-# ドキュメントを許可
-!docs/**/*.md
-
-# Cargo.lock はバイナリの再現性のために含める（好みによるけど一旦許可）
-!Cargo.lock
+# その他すべて（AI用ドキュメント、バイナリ、一時ファイル、個人設定）を確実に除外
+/target/
+/.history/
+/.qodo/
+/.vscode/
+/docs/
+/*.md
+!README.md
+.env*
+*.log
