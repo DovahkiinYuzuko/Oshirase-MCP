@@ -4,8 +4,9 @@
 # ディレクトリ構造のみ許可
 !/src/
 !/bin/
+!/docs/
 
-# ビルドとMCPに必要な最小限のファイルのみ許可
+# 必須のプロジェクトファイルを許可
 !.gitignore
 !Cargo.toml
 !README.md
@@ -14,3 +15,17 @@
 
 # Rustソースコードを許可
 !src/**/*.rs
+
+# ドキュメントを許可
+!docs/**/*.md
+
+# その他すべて（AI用ドキュメント、バイナリ、一時ファイル、個人設定）を確実に除外
+/target/
+/.history/
+/.qodo/
+/.vscode/
+/*.md
+!README.md
+!GEMINI.md
+.env*
+*.log
