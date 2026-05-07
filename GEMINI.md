@@ -25,6 +25,9 @@ This extension provides a Model Context Protocol (MCP) server for sending notifi
 - **Clarity of Content**: Always summarize the execution results into the `message` or `content` fields. Do not send raw, unformatted data.
 - **Error Handling**: If a notification fails (e.g., Webhook URL missing), inform the user about the specific configuration issue found in `config.toml`.
 
+## Documentation
+- For detailed setup and integration instructions across different platforms (Claude, Cursor, etc.), refer to `docs/setup/INTEGRATION.md`.
+
 ## Installation for Gemini CLI
 
 To register this extension locally for development:

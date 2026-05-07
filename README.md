@@ -2,60 +2,36 @@
 
 Unified notification manager for OS desktop alerts and Discord Webhooks via Model Context Protocol (MCP).
 
-## Tools
+## Overview
 
-- **notify_os**: Native desktop notifications.
-- **notify_discord**: Rich Discord embed notifications.
+Oshirase-MCP allows AI agents and CLI tools to send notifications to your local desktop or a Discord channel. It's designed to be a lightweight, single-responsibility server that improves your feedback loop during long-running tasks.
 
-## Prerequisites
+## Features
 
-- Rust (for building from source)
-- Discord Webhook URL (optional)
+- **OS Desktop Notifications**: Native alerts on Windows, macOS, and Linux.
+- **Discord Webhook Support**: Rich embeds with timestamp and context fields.
+
+## Quick Start
+
+1. **Build**:
+   ```bash
+   cargo build --release
+   ```
+2. **Setup AI Agents**:
+   Follow the [Integration Guide](docs/setup/INTEGRATION.md) to add this server to your favorite AI tools.
 
 ## Configuration
 
-Settings are stored in `config.toml` (e.g., `%APPDATA%\mcp-notifier\config.toml` on Windows).
+Settings are managed in `config.toml` located in your system's config directory (e.g., `%APPDATA%\mcp-notifier\config.toml`).
 
 ```toml
 [discord]
-webhook_url = "YOUR_DISCORD_WEBHOOK_URL"
+webhook_url = "https://discord.com/api/webhooks/..."
 
 [general]
 default_title = "Oshirase"
 ```
 
-## AI Agent Integration
+## License
 
-### Gemini CLI
-Run this in the project root:
-```bash
-gemini extensions link .
-```
-
-### Claude Code CLI
-```bash
-claude mcp add oshirase -- cargo run --release -- --mcp
-```
-
-### Cursor / VS Code (GitHub Copilot Chat)
-Add the following to your MCP settings or `.cursor/mcp.json`:
-```json
-{
-  "mcpServers": {
-    "oshirase": {
-      "command": "cargo",
-      "args": ["run", "--release", "--", "--mcp"],
-      "cwd": "/absolute/path/to/Oshirase-MCP"
-    }
-  }
-}
-```
-
-### Codex CLI
-Add to `~/.codex/config.toml`:
-```toml
-[mcp_servers.oshirase]
-command = "cargo"
-args = ["run", "--release", "--", "--mcp"]
-cwd = "/absolute/path/to/Oshirase-MCP"
-```
+MIT
