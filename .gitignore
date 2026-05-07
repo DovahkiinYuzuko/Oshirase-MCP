@@ -1,8 +1,10 @@
+# すべてを無視
 *
 
-# 必要なディレクトリを許可
-!src
-!bin
+# ディレクトリ構造を許可
+!/src/
+!/bin/
+!/docs/
 
 # 必要なファイルを許可
 !.gitignore
@@ -10,7 +12,14 @@
 !LICENSE
 !NOTICE.md
 !Cargo.toml
-!Cargo.lock
 !gemini-extension.json
+!変数関数仕様書.md
 
+# ソースコードを許可
+!src/**/*.rs
 
+# ドキュメントを許可
+!docs/**/*.md
+
+# Cargo.lock はバイナリの再現性のために含める（好みによるけど一旦許可）
+!Cargo.lock

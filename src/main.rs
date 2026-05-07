@@ -51,8 +51,8 @@ impl ServerHandler for OshiraseHandler {
                         description: "OSデスクトップ通知を送信します。".to_string(),
                         input_schema: Some(ToolSchema {
                             properties: Some(json!({
-                                "title": { "type": "string", "description": "通知のタイトル" },
-                                "message": { "type": "string", "description": "通知のメッセージ内容" }
+                                "title": { "type": "string", "description": "通知のタイトル（省略時はデフォルト値）" },
+                                "message": { "type": "string", "description": "通知の本文" }
                             })),
                             required: Some(vec!["message".to_string()]),
                         }),
@@ -64,7 +64,7 @@ impl ServerHandler for OshiraseHandler {
                         input_schema: Some(ToolSchema {
                             properties: Some(json!({
                                 "content": { "type": "string", "description": "通知の本文" },
-                                "prompt": { "type": "string", "description": "元のプロンプトなどの付加情報（任意）" }
+                                "prompt": { "type": "string", "description": "送信元プロンプト等の付加情報（任意）" }
                             })),
                             required: Some(vec!["content".to_string()]),
                         }),
@@ -82,13 +82,13 @@ impl ServerHandler for OshiraseHandler {
                     "notify_os" => {
                         let title = args.get("title").and_then(|t| t.as_str()).unwrap_or(&self.config.general.default_title);
                         let message = args.get("message").and_then(|m| m.as_str()).unwrap_or("");
-                        
+
                         eprintln!("[INFO] MCP Tool [notify_os] called: {}", title);
                         notifier::send_os_notification(title, message);
-                        
+
                         let result = ToolResult {
                             content: vec![MessageContent::Text {
-                                text: "OS通知を送信しました。".to_string(),
+                                text: "OSデスクトップ通知の送信を完了しました。".to_string(),
                             }],
                             structured_content: None,
                         };
@@ -107,10 +107,10 @@ impl ServerHandler for OshiraseHandler {
                                 &self.config.general.default_title,
                             )
                             .await;
-                            
+
                             let result = ToolResult {
                                 content: vec![MessageContent::Text {
-                                    text: "Discord通知を送信しました。".to_string(),
+                                    text: "Discordへの通知送信を完了しました。".to_string(),
                                 }],
                                 structured_content: None,
                             };
@@ -119,7 +119,7 @@ impl ServerHandler for OshiraseHandler {
                             eprintln!("[WARN] Discord Webhook URL is not configured!");
                             let result = ToolResult {
                                 content: vec![MessageContent::Text {
-                                    text: "Error: Discord Webhook URLが設定されていません。".to_string(),
+                                    text: "エラー: Discord WebhookのURLが設定されていません。".to_string(),
                                 }],
                                 structured_content: None,
                             };
