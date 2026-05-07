@@ -19,18 +19,32 @@ gemini extensions install https://github.com/DovahkiinYuzuko/Oshirase-MCP
 ```
 *インストール中に Discord Webhook URL などの設定を聞かれるので、画面の指示に従ってください。*
 
-#### Claude Code
+#### Claude Code / Codex CLI 等のその他のツール
+Gemini CLI以外のツールを使用する場合は、まず以下のコマンドでシステムにバイナリをインストールします。
+
+**Windows (PowerShell):**
+```powershell
+irm https://github.com/DovahkiinYuzuko/Oshirase-MCP/releases/latest/download/oshirase-mcp-installer.ps1 | iex
+```
+**macOS / Linux:**
 ```bash
-claude mcp add oshirase --command "npx" --args "-y,oshirase-mcp"
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/DovahkiinYuzuko/Oshirase-MCP/releases/latest/download/oshirase-mcp-installer.sh | sh
 ```
 
-#### Codex CLI
-`~/.codex/config.toml` に以下の設定を追加してください。
+インストール後、各ツールの設定ファイルにバイナリのパス（通常は `~/.cargo/bin/oshirase-mcp` または `%USERPROFILE%\.cargo\bin\oshirase-mcp.exe`）を指定します。
+
+**Claude Code の場合:**
+```bash
+claude mcp add oshirase --command "oshirase-mcp" --args "--mcp"
+```
+
+**Codex CLI の場合** (`~/.codex/config.toml`):
 ```toml
 [mcp_servers.oshirase]
-command = "npx"
-args = ["-y", "oshirase-mcp", "--mcp"]
+command = "oshirase-mcp"
+args = ["--mcp"]
 ```
+*(※パスが通っていない場合はフルパスを指定してください)*
 
 ### 使い方
 1. **ビルド**: `oshirase-mcp-server` フォルダへ移動し、`cargo build --release` を実行します。
@@ -58,18 +72,32 @@ gemini extensions install https://github.com/DovahkiinYuzuko/Oshirase-MCP
 ```
 *You will be prompted to enter your Discord Webhook URL and other settings during installation.*
 
-#### Claude Code
+#### Other tools like Claude Code / Codex CLI
+For tools other than Gemini CLI, first install the binary on your system using the commands below:
+
+**Windows (PowerShell):**
+```powershell
+irm https://github.com/DovahkiinYuzuko/Oshirase-MCP/releases/latest/download/oshirase-mcp-installer.ps1 | iex
+```
+**macOS / Linux:**
 ```bash
-claude mcp add oshirase --command "npx" --args "-y,oshirase-mcp"
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/DovahkiinYuzuko/Oshirase-MCP/releases/latest/download/oshirase-mcp-installer.sh | sh
 ```
 
-#### Codex CLI
-Add the following configuration to your `~/.codex/config.toml`:
+After installation, configure your tool to use the installed binary (usually located at `~/.cargo/bin/oshirase-mcp` or `%USERPROFILE%\.cargo\bin\oshirase-mcp.exe`).
+
+**For Claude Code:**
+```bash
+claude mcp add oshirase --command "oshirase-mcp" --args "--mcp"
+```
+
+**For Codex CLI** (in `~/.codex/config.toml`):
 ```toml
 [mcp_servers.oshirase]
-command = "npx"
-args = ["-y", "oshirase-mcp", "--mcp"]
+command = "oshirase-mcp"
+args = ["--mcp"]
 ```
+*(Note: If the path is not resolved, use the absolute path to the executable)*
 
 ### Usage
 1. **Build**: Navigate to the `oshirase-mcp-server` directory and run `cargo build --release`.
