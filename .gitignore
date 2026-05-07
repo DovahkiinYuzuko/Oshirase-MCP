@@ -11,7 +11,7 @@
 !LICENSE
 !NOTICE.md
 !gemini-extension.json
-!GEMINI.md
+!AGENTS.md
 
 # サーバーディレクトリ配下をすべて許可
 !/oshirase-mcp-server/**

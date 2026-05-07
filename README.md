@@ -1,5 +1,8 @@
 # Oshirase-MCP
 
+> [!TIP]
+> **AI Agents**: Please refer to [AGENTS.md](./AGENTS.md) for specialized tool usage guidelines and instructions.
+
 [日本語](#日本語)|[English](#english)
 
 ## 日本語
