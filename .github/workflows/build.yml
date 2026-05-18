@@ -23,7 +23,7 @@ jobs:
             artifact_name: oshirase-mcp-macos-x64
           - os: macos-14 # Apple Silicon (M1/M2)
             target: aarch64-apple-darwin
-            artifact_name: oshir64ase-mcp-macos-arm64
+            artifact_name: oshirase-mcp-macos-arm64
 
     steps:
       - name: Checkout code
@@ -35,23 +35,21 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Build
-        # 👇 working-directory: ./oshirase-mcp-server を削除しました
         run: cargo build --release --target ${{ matrix.target }}
 
       - name: Rename artifact (Windows)
         if: matrix.os == 'windows-latest'
-        # 👇 パスから「oshirase-mcp-server/」を削除しました
-        run: move target/${{ matrix.target }}/release/oshirase-mcp.exe target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
+        # 👇 元のファイル名を oshirase-mcp-server.exe に修正しました
+        run: move target\${{ matrix.target }}\release\oshirase-mcp-server.exe target\${{ matrix.target }}\release\${{ matrix.artifact_name }}
         shell: cmd
 
       - name: Rename artifact (Unix)
         if: matrix.os != 'windows-latest'
-        # 👇 パスから「oshirase-mcp-server/」を削除しました
-        run: mv target/${{ matrix.target }}/release/oshirase-mcp target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
+        # 👇 元のファイル名を oshirase-mcp-server に修正しました
+        run: mv target/${{ matrix.target }}/release/oshirase-mcp-server target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact_name }}
-          # 👇 パスから「oshirase-mcp-server/」を削除しました
           path: target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
