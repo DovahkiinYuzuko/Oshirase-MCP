@@ -35,18 +35,19 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Build
+        # working-directoryを削除し、Cargo.tomlがあるルート階層で正しくビルドします
         run: cargo build --release --target ${{ matrix.target }}
 
       - name: Rename artifact (Windows)
         if: matrix.os == 'windows-latest'
-        # 👇 元のファイル名を oshirase-mcp-server.exe に修正しました
-        run: move target\${{ matrix.target }}\release\oshirase-mcp-server.exe target\${{ matrix.target }}\release\${{ matrix.artifact_name }}
+        # 実際の出力ファイル名「oshirase-mcp.exe」を正確に指定してリネームします
+        run: move target\${{ matrix.target }}\release\oshirase-mcp.exe target\${{ matrix.target }}\release\${{ matrix.artifact_name }}
         shell: cmd
 
       - name: Rename artifact (Unix)
         if: matrix.os != 'windows-latest'
-        # 👇 元のファイル名を oshirase-mcp-server に修正しました
-        run: mv target/${{ matrix.target }}/release/oshirase-mcp-server target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
+        # 実際の出力ファイル名「oshirase-mcp」を正確に指定してリネームします
+        run: mv target/${{ matrix.target }}/release/oshirase-mcp target/${{ matrix.target }}/release/${{ matrix.artifact_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
