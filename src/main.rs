@@ -26,10 +26,10 @@ impl ServerHandler for OshiraseHandler {
         _capabilities: ClientCapabilities,
     ) -> Result<ServerCapabilities, mcp_sdk_rs::Error> {
         Ok(ServerCapabilities {
-            tools: Some(json!(true)),
-            resources: Some(json!(false)),
-            prompts: Some(json!(false)),
-            logging: Some(json!(false)),
+            tools: Some(json!({})),
+            resources: None,
+            prompts: None,
+            logging: None,
             ..Default::default()
         })
     }
